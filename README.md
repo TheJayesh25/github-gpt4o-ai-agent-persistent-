@@ -1,87 +1,92 @@
-# 💾 Persistent GPT-4o Agent (LangGraph + Streamlit)
+# 💾 Persistent Github GPT-4o Agent (LangGraph + Streamlit) 
 
-A minimal yet powerful conversational agent using **LangGraph**, **LangChain**, and **Streamlit**, built on top of GPT-4o.  
-This chatbot supports:
-
-✅ Persistent sessions using SQLite  
-✅ Multi-session management with dynamic switching  
-✅ Full support for tool and function messages  
-✅ Clean Streamlit UI with sidebar-based session controls  
+A powerful, privacy-conscious AI assistant powered by GitHub-hosted GPT-4o.  
+Designed with developers in mind, this agent offers persistent session memory, secure token authentication, and extendability for real-world applications.
 
 ---
 
-## 🧠 Features
+## 🔐 Authentication via GitHub Token
 
-- **Streamlit Interface**  
-  Chat with the agent directly in the browser with a friendly interface.
+- Secure login via GitHub token (user-provided).
+- Each token is **SHA-256 hashed** to create a private identifier (`user_hash`) used to:
+  - Track user sessions
+  - Prevent token storage
+  - Isolate chat histories across users
 
-- **Session Management**  
-  Create and switch between multiple named sessions — all conversations are saved.
-
-- **SQLite Database Integration**  
-  Message and session history are stored persistently in a local SQLite file.
-
-- **Supports Tool & Function Messages**  
-  Structured messages like `ToolMessage` and `FunctionMessage` are stored and restored seamlessly.
-
-- **LangGraph Agent Backend**  
-  Built using LangGraph for flexible agent orchestration and memory management.
+> 💡 You can generate a GitHub token from:  
+> [https://github.com/settings/tokens](https://github.com/settings/tokens)
 
 ---
 
-## 📁 Folder Structure
-```
-├── agent.py # LangGraph agent logic
-├── main.py # Streamlit frontend
-├── github_gpt4o_langchain.py # GPT-4o wrapper for GitHub inference endpoint
-├── chat_messages.db # SQLite DB file (auto-created)
-└── requirements.txt
-```
+## 💾 Persistent Memory via SQLite
 
+- All chat messages are stored in a local database (`chat_messages.db`).
+- Each user can create and manage **multiple chat sessions**.
+- All message types (`human`, `AI`, `function`, `tool`, etc.) are serialized and deserialized correctly.
 
 ---
 
-## 🚀 Getting Started
+## 🧠 LangGraph Architecture
 
-### 1. Clone the Repository
+- Built using LangGraph's `StateGraph` for controlled message flow.
+- Node function (`process`) invokes the model and updates memory.
+- Designed to be extensible for:
+  - Tool calling
+  - Function execution
+  - Retrieval-augmented generation
+
+---
+
+## 🧠 Highlights
+
+| Feature                  | Details |
+|--------------------------|---------|
+| 🛡️ Token Hashing         | Prevents token leaks and supports session-based user isolation |
+| 🗃️ Session Management    | Named session support with persistent conversations |
+| 🧠 GPT-4o Integration     | Uses GitHub's hosted inference endpoint (`https://models.github.ai/inference`) |
+| 🔄 Tool & Function Ready | Agent already supports future extensions for tool-calling and more |
+| ❌ Invalid Token Check   | Validates GitHub token via trial request before login |
+| 🔄 Logout Flow           | Secure reset and return to auth gate |
+
+---
+
+## ⚙️ How to Use
+
+
+### 1. Clone the repo:
 
 ```bash
-git clone https://github.com/yourusername/persistent-gpt4o-agent.git
-cd persistent-gpt4o-agent
+git clone https://github.com/your-username/GitHub-GPT4o-Agent.git
+cd GitHub-GPT4o-Agent
 ```
 
-### 2. Install Dependencies
+### 2. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Create a .env file:
-
-```bash
-OPENAI_API_KEY=your_api_key
-```
-
-### 4. Run the App
+### 3. Run it:
 
 ```bash
 streamlit run main.py
 ```
 
-### 🗂️ How it Works
-- On first load, the app prompts you to either select an existing session or create a new one.
-- Messages are saved in chat_messages.db under their respective session IDs.
-- The LangGraph agent processes your input and returns AI responses.
-- All message types (human, ai, system, function, tool) are stored with relevant metadata (tool_call_id, name).
+### 4. Provide your GitHub GPT-4o token at login
 
-### 🛠️ Future Additions
- -> Add real working tools (e.g., calculator, web search, weather)
- -> Export conversations
- -> Session tagging / summarization
- -> User authentication (optional)
+### 🔒 Security First
+- GitHub tokens are not stored.
+- All session control is hash-based and local.
+- SQLite stores only messages, not secrets.
 
-### 📸 Preview
-![image](https://github.com/user-attachments/assets/2c2e2231-3203-42f7-a608-5ecb88693bb6)
+### 🧰 Tech Stack
+- LangGraph & LangChain
+- Streamlit
+- SQLite (for state persistence)
+- GitHub GPT-4o Inference API
+
+### 📸 Previews
+![image](https://github.com/user-attachments/assets/8021895f-de59-42a2-8c10-baef00491792)
 
 ### 🧑‍💻 Author
 Jayesh Suryawanshi

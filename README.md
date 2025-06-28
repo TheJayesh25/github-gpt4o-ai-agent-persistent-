@@ -49,7 +49,17 @@ Designed with developers in mind, this agent offers persistent session memory, s
 | 🔄 Logout Flow           | Secure reset and return to auth gate |
 
 ---
+## 📂 Project Structure
 
+```bash
+├── main.py # Streamlit frontend with authentication and UI
+├── agent.py # LangGraph logic and GPT-4o invocation flow
+├── github_wrapper.py # Custom wrapper for GitHub-hosted GPT-4o API
+├── chat_messages.db # SQLite database for chat/session persistence
+├── requirements.txt # Python dependencies
+└── README.md # Project overview and usage
+```
+---
 ## ⚙️ How to Use
 
 
@@ -73,25 +83,25 @@ streamlit run main.py
 ```
 
 ### 4. Provide your GitHub GPT-4o token at login
-
+---
 ### 🔒 Security First
 - GitHub tokens are not stored.
 - All session control is hash-based and local.
 - SQLite stores only messages, not secrets.
-
+---
 ### 🧰 Tech Stack
 - LangGraph & LangChain
 - Streamlit
 - SQLite (for state persistence)
 - GitHub GPT-4o Inference API
-
+---
 ### 📸 Previews
 ![image](https://github.com/user-attachments/assets/8021895f-de59-42a2-8c10-baef00491792)
-
+---
 ### 🧑‍💻 Author
 Jayesh Suryawanshi
 - 🧠 Python Developer | 💡 AI Tools Builder | 🌍 Data & Engineering Enthusiast
 - 📫 [LinkedIn](https://www.linkedin.com/in/jayesh-suryawanshi-858bb21aa/)
-
+---
 ### 📃 License
 MIT License

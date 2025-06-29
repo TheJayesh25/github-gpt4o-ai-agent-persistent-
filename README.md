@@ -94,10 +94,18 @@ streamlit run main.py
 - Streamlit
 - SQLite (for state persistence)
 - GitHub GPT-4o Inference API
+  
 ---
 ### 📸 Previews
 ![image](https://github.com/user-attachments/assets/8021895f-de59-42a2-8c10-baef00491792)
 ---
+![image](https://github.com/user-attachments/assets/34759d7c-526b-4332-8822-3e356d44b8a9)
+---
+![image](https://github.com/user-attachments/assets/0dec1bd3-9045-4938-9680-2402eae106dc)
+---
+![image](https://github.com/user-attachments/assets/363e0655-f092-4f8f-ab92-260c4a181920)
+---
+
 ### 🧑‍💻 Author
 Jayesh Suryawanshi
 - 🧠 Python Developer | 💡 AI Tools Builder | 🌍 Data & Engineering Enthusiast
